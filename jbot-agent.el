@@ -1357,8 +1357,8 @@ TITLE names the review.  NEW-FRAME requests a dedicated frame."
         (atomic-change-group
           (save-restriction
             (widen)
-            (replace-region-contents
-             (point-min) (point-max) proposal-text)))
+            (delete-region (point-min) (point-max))
+            (insert proposal-text)))
         (undo-boundary)))
     (setf (jbot-agent--review-accepted session) t)
     (jbot-agent--cleanup-review session)

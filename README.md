@@ -1,5 +1,8 @@
 # jbot-agent
 
+[![CI](https://github.com/JKRT/JBOT.el/actions/workflows/ci.yml/badge.svg)](https://github.com/JKRT/JBOT.el/actions/workflows/ci.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
 `jbot-agent` is an Emacs-native assistant for local language models. It uses an
 OpenAI-compatible HTTP server, with llama.cpp as the primary backend. Generated
 edits are proposals: JBOT never changes a source buffer without explicit review

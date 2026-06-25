@@ -167,18 +167,18 @@
       (jbot-agent--chat-completion
        '(((role . "user") (content . "hello"))) #'ignore))
     (let ((messages (alist-get 'messages captured)))
+      (should (equal (alist-get 'model captured) "test-model"))
       (should (vectorp messages))
+      (should (= (length messages) 1))
+      (should (equal (aref messages 0)
+                     '((role . "user") (content . "hello"))))
       (should (eq
                (alist-get 'enable_thinking
                           (alist-get 'chat_template_kwargs captured))
                :false))
-      (should (equal
-               (json-serialize captured)
-               (concat
-                "{\"model\":\"test-model\",\"messages\":[{\"role\":\"user\","
-                "\"content\":\"hello\"}],\"chat_template_kwargs\":{"
-                "\"enable_thinking\":false},\"temperature\":0.2,"
-                "\"max_tokens\":4096,\"stream\":false}"))))))
+      (should (= (alist-get 'temperature captured) 0.2))
+      (should (= (alist-get 'max_tokens captured) 4096))
+      (should (eq (alist-get 'stream captured) :false)))))
 
 (ert-deftest jbot-agent-test-reasoning-without-answer-is-an-error ()
   (should-error
