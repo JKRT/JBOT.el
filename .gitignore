@@ -1,0 +1,30 @@
+# Ignore dotfiles and dot-directories everywhere by default.
+.*
+**/.*
+
+# Keep repository infrastructure required by GitHub and local hooks.
+!.gitignore
+!.github/
+!.github/**
+!.githooks/
+!.githooks/**
+
+# Emacs generated files.
+*.elc
+*.eln
+*~
+\#*\#
+.\#*
+auto-save-list/
+
+# Build, test, and local runtime output.
+*.log
+*.tmp
+*.bak
+coverage/
+dist/
+build/
+
+# Common operating-system files.
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -eu
+
+case ",${SKIP:-}," in
+  *,gitleaks,*)
+    echo "gitleaks pre-commit scan skipped via SKIP"
+    exit 0
+    ;;
+esac
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "error: gitleaks is required for the repository pre-commit hook" >&2
+  echo "install it from https://github.com/gitleaks/gitleaks#installing" >&2
+  exit 1
+fi
+
+exec gitleaks git --pre-commit --redact --staged --verbose
